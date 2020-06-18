@@ -1,0 +1,375 @@
+{
+	"info": {
+		"_postman_id": "ff7cf19e-0b98-45f4-bf3e-d8bd0824ed0e",
+		"name": "BPDTS test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get instructions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a75c8028-7448-4b3e-8879-c7e1cec7011c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"      pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body Returned\", function () {\r",
+							"      pm.expect(pm.response.text()).to.not.be.empty;\r",
+							"      pm.response.to.not.have.jsonBody(\"error\");\r",
+							"      pm.response.to.be.withBody;\r",
+							"      pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/instructions",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"instructions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/instructions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"instructions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "get users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7fc24aa9-a54c-4c96-b4bd-70b281ef5cdc",
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"      pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body Returned\", function () {\r",
+							"      pm.expect(pm.response.text()).to.not.be.empty;\r",
+							"      pm.response.to.not.have.jsonBody(\"error\");\r",
+							"      pm.response.to.be.withBody;\r",
+							"      pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"bodyData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.globals.set(\"id\", _.first(pm.response.json()).id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "get users by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9990c5f6-a975-454f-8ac3-92128ce0bd4c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"      pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body Returned\", function () {\r",
+							"      pm.expect(pm.response.text()).to.not.be.empty;\r",
+							"      pm.response.to.not.have.jsonBody(\"error\");\r",
+							"      pm.response.to.be.withBody;\r",
+							"      pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"bodyData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.globals.set(\"city\",(pm.response.json()).city);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1ed0e5ac-f981-47bc-bf3c-18df2501cd69",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/user/{{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user",
+						"{{id}}"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{id}}",
+							"description": "User Id ",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "get users by city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "001a615f-c6ec-413d-9822-8365b9c750de",
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"      pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body Returned\", function () {\r",
+							"      pm.expect(pm.response.text()).to.not.be.empty;\r",
+							"      pm.response.to.not.have.jsonBody(\"error\");\r",
+							"      pm.response.to.be.withBody;\r",
+							"      pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/city/{{city}}/users?city={{city}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"city",
+						"{{city}}",
+						"users"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "{{city}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/city/:city/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"city",
+								":city",
+								"users"
+							],
+							"variable": [
+								{
+									"key": "city"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"id": "baseUrl",
+			"key": "baseUrl",
+			"value": "/",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
